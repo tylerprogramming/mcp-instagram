@@ -1,0 +1,10 @@
+# Install with: pip install -r requirements.txt
+# main.py: CrewAI agent + MCPServerAdapter (crewai-tools "mcp" extra)
+crewai>=1.15,<2
+crewai-tools[mcp]>=1.15,<2
+python-dotenv>=1.2,<2
+# mcp_servers/instagram_server.py: FastMCP server + Graph API calls
+mcp>=1.30,<2
+requests>=2.33,<3
+# create_sample_image_for_s3.py (optional sample-image helper)
+openai>=2.30,<3

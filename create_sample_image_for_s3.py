@@ -8,7 +8,8 @@ listen to the heartbeat of a baby otter.
 """
 
 result = client.images.generate(
-    model="gpt-image-1",
+    # gpt-image-1 was shut down on 2026-10-23; OpenAI recommends the gpt-image-2.5 models
+    model="gpt-image-2.5-flare",
     prompt=prompt
 )
 

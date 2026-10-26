@@ -87,12 +87,12 @@ LATEST_API_VERSION=v22.0
 
 ### Dependencies
 
-- Python 3.10+
-- Required packages (install via pip):
+- Python 3.10 to 3.13 (CrewAI 1.15 supports <3.14)
+- Required packages are in `requirements.txt` (CrewAI, `crewai-tools[mcp]` for `MCPServerAdapter`, the `mcp` SDK for the server, `requests`, `python-dotenv`, and `openai` for the optional sample-image script):
   ```
-  pip install crewai crewai_tools python-dotenv requests
+  pip install -r requirements.txt
   ```
-- (Optional) Other dependencies as needed for your environment.
+- `main.py` imports `get_latest_youtube_transcription` from a `youtube_transcriptions` module that is not in this repository (and is not a PyPI package). Add your own `youtube_transcriptions.py` that returns the caption text, or replace that call in `main.py` with a string.
 
 ---
 
@@ -103,21 +103,17 @@ LATEST_API_VERSION=v22.0
 2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
-   # or manually as above
    ```
 
 3. **Set up your environment variables**:
    - Copy `.env.example` to `.env` and fill in your credentials.
 
-4. **Start the MCP Instagram server**:
-   ```bash
-   python mcp_instagram/mcp_servers/instagram_server.py
-   ```
-   - This will start the server and expose Instagram API tools via MCP.
+4. **The MCP Instagram server starts automatically**:
+   - `main.py` launches `mcp_servers/instagram_server.py` over stdio through `MCPServerAdapter`, so you don't start it yourself. The path is relative, so run everything from the repository root.
 
-5. **Run the CrewAI Instagram agent**:
+5. **Run the CrewAI Instagram agent** (from the repository root):
    ```bash
-   python mcp_instagram/main.py
+   python main.py
    ```
    - You will be prompted to enter the type of post (`carousel` or `single image publish`).
    - The agent will:
@@ -146,7 +142,7 @@ LATEST_API_VERSION=v22.0
 - [Content Publishing Guide](https://developers.facebook.com/docs/instagram-platform/content-publishing/)
 - [CrewAI Documentation](https://docs.crewai.com/)
 - [Python Requests Library](https://docs.python-requests.org/en/latest/)
-- [Model Context Protocol (MCP)](https://github.com/joaomdmoura/model-context-protocol)
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
 
 ---
 
